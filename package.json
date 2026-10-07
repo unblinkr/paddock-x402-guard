@@ -1,0 +1,44 @@
+{
+  "name": "@paddock-finance/x402-guard",
+  "version": "0.1.0",
+  "description": "Stop an AI agent from paying the wrong wallet. A pre-payment check for the x402 client, backed by Paddock's settlement record.",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/unblinkr/paddock-x402-guard.git" },
+  "bugs": { "url": "https://github.com/unblinkr/paddock-x402-guard/issues" },
+  "homepage": "https://paddock.finance/verify",
+  "keywords": ["x402", "agent payments", "ai agents", "payments", "verification", "paddock"],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "publishConfig": { "access": "public", "provenance": true },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@x402/core": "^2.28.0"
+  },
+  "devDependencies": {
+    "@x402/core": "2.28.0",
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^2.0.0"
+  }
+}
