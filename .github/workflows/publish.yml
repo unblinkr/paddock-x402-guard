@@ -1,0 +1,38 @@
+name: Publish
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - name: Require NPM_TOKEN
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "NPM_TOKEN repo secret is not set. Nothing was published. Add it under Settings, Secrets and variables, Actions." >&2
+            exit 1
+          fi
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - name: Publish if this version is not on npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "@paddock-finance/x402-guard@${VERSION}" version >/dev/null 2>&1; then
+            echo "Version ${VERSION} is already on npm. Nothing to publish."
+          else
+            npm publish --provenance --access public
+          fi
