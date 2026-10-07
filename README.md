@@ -13,7 +13,7 @@ npm install @paddock-finance/x402-guard
 ## Use
 
 ```ts
-import { x402Client } from "@x402/core";
+import { x402Client } from "@x402/core/client";
 import { wrapFetchWithPayment } from "@x402/fetch";
 import { withPaddockGuard } from "@paddock-finance/x402-guard";
 
