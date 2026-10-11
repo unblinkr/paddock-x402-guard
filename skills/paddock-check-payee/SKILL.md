@@ -28,7 +28,7 @@ Or call the `check_payee` tool on Paddock's MCP server at https://paddock.financ
 
 ## Free
 
-25 checks a day without a key, 1,000 a day with a free key from https://paddock.finance/api-access.
+25 checks a day without a key. Past that, Paddock answers 402 and you pay as normal. A Builder or Pro Agent key from https://paddock.finance/api-access lifts the limit.
 
 ## In code
 

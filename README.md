@@ -49,7 +49,7 @@ If Paddock is slow, unreachable, or you are past the free limit, the payment goe
 
 ## Limits
 
-Free without a key: 25 checks a day per IP. Free key: 1,000 checks a day. Get one at https://paddock.finance/api-access and pass it as `paddockGuard({ apiKey })`.
+Free without a key: 25 checks a day per IP. Past that, the guard fails open and the payment goes through. A Builder or Pro Agent key from <https://paddock.finance/api-access> lifts the limit; pass it as `paddockGuard({ apiKey })`.
 
 ## Options
 
